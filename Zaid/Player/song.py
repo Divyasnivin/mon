@@ -39,7 +39,7 @@ ydl_opts = {
 @Client.on_message(command(["بحث", f"ب"]) & ~filters.edited)
 def song(_, message):
     query = " ".join(message.command[1:])
-    m = message.reply("❤️‍🔥 جَاެࢪي اެݪبَحثَ...")
+    m = message.reply("**ابشر ثواني بس**")
     ydl_ops = {"format": "bestaudio[ext=m4a]"}
     try:
         results = YoutubeSearch(query, max_results=1).to_dict()
@@ -52,7 +52,7 @@ def song(_, message):
         duration = results[0]["duration"]
 
     except Exception as e:
-        m.edit("❌ لم يتم العثور على شيء.")
+        m.edit("مالقيت اغنية بهذا العنوان.")
         print(str(e))
         return
     m.edit("📥 رفع الملف...")
@@ -61,7 +61,7 @@ def song(_, message):
             info_dict = ydl.extract_info(link, download=False)
             audio_file = ydl.prepare_filename(info_dict)
             ydl.process_info(info_dict)
-        rep = f"**🎧 تم التحميل بواسطة @{bn}**"
+        rep = f"**🎧 تم التحميل بواسطة @kkcet**"
         secmul, dur, dur_arr = 1, 0, duration.split(":")
         for i in range(len(dur_arr) - 1, -1, -1):
             dur += int(float(dur_arr[i])) * secmul
